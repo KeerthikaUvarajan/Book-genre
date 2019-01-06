@@ -67,6 +67,17 @@ app.put('/api/genres/:Name',(req,res)=>{
     res.send(genre);
 });
 
+//Handling DELETE method with Name
+app.delete('/api/genres/:Name',(req,res)=>{
+    const genre = genres.find(d=>d.Name===req.params.Name);
+    if(!genre){
+        res.status(404).send("Error 404!!! The page you requested is not found");
+    }
+    const index = genres.indexOf(genre);
+    genres.splice(index, 1);
+    res.send(genre);
+});
+
 /* - While hosting the webpage I cannot get the port 3000 everytime. Solution for this is by using environment variables
    - Environment variables are set outside the application */
 const port = process.env.PORT || 3000; 
