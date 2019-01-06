@@ -45,6 +45,27 @@ app.post('/api/genres',(req,res)=>{
     genres.push(genre);
     res.send(genre);
 });
+function validateGenre(genre){
+    const schema = {
+        Name:Joi.string().min(5).required()
+    }
+    return Joi.validate(genre,schema);
+}
+
+//Handling PUT method with Name
+app.put('/api/genres/:Name',(req,res)=>{
+    const genre = genres.find(d=>d.Name===req.params.Name);
+    if(!genre){
+        res.status(404).send("Error 404!!! The page you requested is not found");
+    }
+    const {error} = validateGenre(req.body);
+    if(error){
+        res.status(400).send(error.details.message);
+        return;
+    }
+    genre.Name = req.body.Name;
+    res.send(genre);
+});
 
 /* - While hosting the webpage I cannot get the port 3000 everytime. Solution for this is by using environment variables
    - Environment variables are set outside the application */
