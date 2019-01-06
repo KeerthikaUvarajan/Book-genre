@@ -24,6 +24,7 @@ app.get('/api/genres/:Name',(req,res)=>{
     const genre = genres.find(d=>d.Name===req.params.Name);
     if(!genre){
         res.status(404).send("Error 404!!! The page you requested is not found");
+        return;
     }
     res.send(genre);
 });
@@ -57,6 +58,7 @@ app.put('/api/genres/:Name',(req,res)=>{
     const genre = genres.find(d=>d.Name===req.params.Name);
     if(!genre){
         res.status(404).send("Error 404!!! The page you requested is not found");
+        return;
     }
     const {error} = validateGenre(req.body);
     if(error){
@@ -72,6 +74,7 @@ app.delete('/api/genres/:Name',(req,res)=>{
     const genre = genres.find(d=>d.Name===req.params.Name);
     if(!genre){
         res.status(404).send("Error 404!!! The page you requested is not found");
+        return;
     }
     const index = genres.indexOf(genre);
     genres.splice(index, 1);
