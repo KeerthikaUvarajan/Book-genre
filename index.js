@@ -17,14 +17,16 @@ app.get('/api/genres',(req,res)=>{
     res.send("Please choose the book genre");
 });
 
-//Handling GET request with ID
-app.get('/api/genres/:id',(req,res)=>{
-    const genre = genres.find(c=>c.id===parseInt(req.params.id));
+//Handling GET request with Name
+app.get('/api/genres/:Name',(req,res)=>{
+    const genre = genres.find(d=>d.Name===req.params.Name);
     if(!genre){
         res.status(404).send("Error 404!!! The page you requested is not found");
     }
     res.send(genre);
 });
+
+//Handling POST request 
 
 /* - While hosting the webpage I cannot get the port 3000 everytime. Solution for this is by using environment variables
    - Environment variables are set outside the application */
