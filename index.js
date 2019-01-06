@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+app.use(express.json());  //Using middleware
 const genres = [
     {id:1, Name:"Novel"},
     {id:2, Name:"Fiction"},
@@ -27,6 +28,14 @@ app.get('/api/genres/:Name',(req,res)=>{
 });
 
 //Handling POST request 
+app.post('/api/genres',(req,res)=>{
+    const genre = {
+        id:genre.length+1,
+        Name: req.body.Name
+    };
+    genres.push(genre);
+    res.send(genre);
+});
 
 /* - While hosting the webpage I cannot get the port 3000 everytime. Solution for this is by using environment variables
    - Environment variables are set outside the application */
