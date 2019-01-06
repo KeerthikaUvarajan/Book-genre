@@ -22,10 +22,7 @@ app.get('/api/genres',(req,res)=>{
 //Handling GET request with Name
 app.get('/api/genres/:Name',(req,res)=>{
     const genre = genres.find(d=>d.Name===req.params.Name);
-    if(!genre){
-        res.status(404).send("Error 404!!! The page you requested is not found");
-        return;
-    }
+    if(!genre) return res.status(404).send("Error 404!!! The page you requested is not found");    
     res.send(genre);
 });
 
@@ -35,10 +32,8 @@ app.post('/api/genres',(req,res)=>{
         Name:Joi.string().min(5).required()
     }
     const result = Joi.validate(req.body, schema);
-    if(!result){
-        res.status(400).send(result.error.details.message);
-        return;
-    }
+    if(!result) return res.status(400).send(result.error.details.message);
+
     const genre = {
         id:genres.length+1,
         Name: req.body.Name
@@ -56,10 +51,7 @@ function validateGenre(genre){
 //Handling PUT method with Name
 app.put('/api/genres/:Name',(req,res)=>{
     const genre = genres.find(d=>d.Name===req.params.Name);
-    if(!genre){
-        res.status(404).send("Error 404!!! The page you requested is not found");
-        return;
-    }
+    if(!genre) return res.status(404).send("Error 404!!! The page you requested is not found");
     const {error} = validateGenre(req.body);
     if(error){
         res.status(400).send(error.details.message);
@@ -72,10 +64,7 @@ app.put('/api/genres/:Name',(req,res)=>{
 //Handling DELETE method with Name
 app.delete('/api/genres/:Name',(req,res)=>{
     const genre = genres.find(d=>d.Name===req.params.Name);
-    if(!genre){
-        res.status(404).send("Error 404!!! The page you requested is not found");
-        return;
-    }
+    if(!genre) return  res.status(404).send("Error 404!!! The page you requested is not found");
     const index = genres.indexOf(genre);
     genres.splice(index, 1);
     res.send(genre);
