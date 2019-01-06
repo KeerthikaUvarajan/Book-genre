@@ -17,6 +17,9 @@ app.get('/api/genre',(req,res)=>{
     res.send("Please choose the book genre");
 });
 
-app.listen(3000,()=>{
-    console.log("Listening in port 3000...");
+/* - While hosting the webpage I cannot get the port 3000 everytime. Solution for this is by using environment             variables
+   - Environment variables are set outside the application */
+const port = process.env.PORT || 3000; 
+app.listen(port,()=>{
+    console.log(`Listening in port ${port}...`);
 });
