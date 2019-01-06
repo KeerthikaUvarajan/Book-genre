@@ -13,11 +13,20 @@ const genres = [
     {id:10, Name:"History"}
 ];
 
-app.get('/api/genre',(req,res)=>{
+app.get('/api/genres',(req,res)=>{
     res.send("Please choose the book genre");
 });
 
-/* - While hosting the webpage I cannot get the port 3000 everytime. Solution for this is by using environment             variables
+//Handling GET request with ID
+app.get('/api/genres/:id',(req,res)=>{
+    const genre = genres.find(c=>c.id===parseInt(req.params.id));
+    if(!genre){
+        res.status(404).send("Error 404!!! The page you requested is not found");
+    }
+    res.send(genre);
+});
+
+/* - While hosting the webpage I cannot get the port 3000 everytime. Solution for this is by using environment variables
    - Environment variables are set outside the application */
 const port = process.env.PORT || 3000; 
 app.listen(port,()=>{
