@@ -1,3 +1,4 @@
+const Joi = require('joi');
 const express = require('express');
 const app = express();
 app.use(express.json());  //Using middleware
@@ -29,8 +30,16 @@ app.get('/api/genres/:Name',(req,res)=>{
 
 //Handling POST request 
 app.post('/api/genres',(req,res)=>{
+    const schema = {                    //Input validation
+        Name:Joi.string().min(5).required()
+    }
+    const result = Joi.validate(req.body, schema);
+    if(!result){
+        res.status(400).send(result.error.details.message);
+        return;
+    }
     const genre = {
-        id:genre.length+1,
+        id:genres.length+1,
         Name: req.body.Name
     };
     genres.push(genre);
