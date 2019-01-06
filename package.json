@@ -1,0 +1,20 @@
+{
+  "name": "Movie-genre",
+  "version": "1.0.0",
+  "description": "Movie genre is a project to list out different genre which makes it easy for the user to get the books. This is a backend project using Node.js and Express. Here, I have used CRUD (Create, Read, Update and Delete) operations also known as HTTP request methods. Here Postman is used for calling the endpoints and checking the HTTP status code.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KeerthikaUvarajan/Movie-genre.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KeerthikaUvarajan/Movie-genre/issues"
+  },
+  "homepage": "https://github.com/KeerthikaUvarajan/Movie-genre#readme"
+}
